@@ -9,20 +9,20 @@
     <div>The count down App</div>
     <!-- this is for the hours -->
     <div>
-      <input type="text" value="00" />
-      <label for="">Hours</label>
+      <p id="countdown">10:00</p>
     </div>
+    <script>
+      const startingMinutes = 10;
+      let time = startingMinutes * 60;
 
-    <!-- this is for the mins -->
-    <div>
-      <input type="text" value="00" />
-      <label> Minutes </label>
-    </div>
-
-    <!-- this is for the seconds -->
-    <div>
-      <input type="text" value="00" />
-      <label>Seconds</label>
-    </div>
+      let countDowntime = document.getElementById("countdown");
+      setInterval(updateCountdown, 1000);
+      function updateCountdown() {
+        const minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+        countDowntime.innerHTML = `${minutes}:${seconds}`;
+        time--;
+      }
+    </script>
   </body>
 </html>
