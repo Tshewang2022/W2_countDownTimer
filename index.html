@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,7 @@
   </head>
   <body>
     <div>The count down App</div>
-    <!-- this is for the hours -->
+
     <div>
       <p id="countdown">10:00</p>
     </div>
@@ -22,6 +22,61 @@
         let seconds = time % 60;
         countDowntime.innerHTML = `${minutes}:${seconds}`;
         time--;
+      }
+    </script>
+  </body>
+</html> -->
+<!-- will create the second counter app using the js and html without css -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CounterApp</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="clock">
+      <!-- data-hour-hand is the data attributes -->
+      <div class="hand hours" data-hour-hand></div>
+      <div class="hand minutesm" data-minutes-hand></div>
+      <div class="hand seconds" data-seconds-hand></div>
+      <div class="number number1">1</div>
+      <div class="number number1">1</div>
+      <div class="number number2">2</div>
+      <div class="number number3">3</div>
+      <div class="number number4">4</div>
+      <div class="number number5">5</div>
+      <div class="number number6">6</div>
+      <div class="number number7">7</div>
+      <div class="number number8">8</div>
+      <div class="number number9">9</div>
+      <div class="number number10">10</div>
+      <div class="number number11">11</div>
+      <div class="number number12">12</div>
+    </div>
+    <script>
+      // we need to call the function from the certain point of interval
+      setInterval(countdown, 1000);
+      // the first function is just for calling connecting the DOM tree of html with js
+      const hourHand = document.querySelector("[data-hour-hand]");
+      const secondHand = document.querySelector("[data-seconds-hand]");
+      const minutesHand = document.querySelector("[data-minutes-hand]");
+
+      //this is the function that cal the time
+      function countdown() {
+        const currentDate = new Date();
+        const secondsRatio = currentDate.getSeconds() / 60;
+        const minutesRatio = (secondsRatio + currentDate.getSeconds()) / 60;
+        const hoursRatio = (minutesRatio + currentDate.getSeconds()) / 12;
+        setRotation(secondHand, secondsRatio);
+        setRotation(minutesHand, minutesRatio);
+        setRotation(hourHand, hoursRatio);
+      }
+
+      //this is the function, the connects with the elements
+      function setRotation(element, rotationRatio) {
+        element.style.setProperty("--rotation", rotationRatio * 360);
       }
     </script>
   </body>
